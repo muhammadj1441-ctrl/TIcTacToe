@@ -1,0 +1,23 @@
+from pygame import *
+width=620
+height=600
+screen=display.set_mode((width,height))
+
+
+
+endgame=False
+while endgame==False:
+	for e in event.get():
+		if e.type==QUIT:
+			endgame=True
+	screen.fill((0,0,0))
+	draw.rect(255,255,255),(10,10,
+	
+	
+	
+	
+	
+	
+	
+	
+	display.flip()
