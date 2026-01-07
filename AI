@@ -1,0 +1,6 @@
+from random import *
+def AI():
+    xord=randint(0,2)
+    yord=randint(0,2)
+    if board[xord][yord]!="":
+        board[xord][yord]="o"
