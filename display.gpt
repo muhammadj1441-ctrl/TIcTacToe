@@ -1,0 +1,103 @@
+import pygame
+
+
+pygame.init()
+
+WIDTH = 600
+HEIGHT = 600
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Tic Tac Toe")
+
+CLOCK = pygame.time.Clock()
+
+
+board = [
+    ["X", "", "X"],
+    ["O", "", "O"],
+    ["", "X", "O"]
+]
+
+GRID_SIZE = 3
+CELL_SIZE = WIDTH // GRID_SIZE
+
+# ---------- COLORS ----------
+BG_COLOR = (0, 0, 0)
+LINE_COLOR = (255, 255, 255)
+X_COLOR = (255, 0, 0)
+O_COLOR = (0, 255, 0)
+
+# ---------- DRAW GRID ----------
+def draw_grid():
+    i = 1
+    while i < GRID_SIZE:
+        # Vertical line
+        pygame.draw.line(
+            SCREEN,
+            LINE_COLOR,
+            (i * CELL_SIZE, 0),
+            (i * CELL_SIZE, HEIGHT),
+            5
+        )
+        # Horizontal line
+        pygame.draw.line(
+            SCREEN,
+            LINE_COLOR,
+            (0, i * CELL_SIZE),
+            (WIDTH, i * CELL_SIZE),
+            5
+        )
+        i += 1
+
+# ---------- DRAW X AND O ----------
+def draw_marks():
+    row = 0
+    while row < GRID_SIZE:
+        col = 0
+        while col < GRID_SIZE:
+            center_x = col * CELL_SIZE + CELL_SIZE // 2
+            center_y = row * CELL_SIZE + CELL_SIZE // 2
+
+            if board[row][col] == "X":
+                offset = CELL_SIZE // 3
+                pygame.draw.line(
+                    SCREEN,
+                    X_COLOR,
+                    (center_x - offset, center_y - offset),
+                    (center_x + offset, center_y + offset),
+                    6
+                )
+                pygame.draw.line(
+                    SCREEN,
+                    X_COLOR,
+                    (center_x - offset, center_y + offset),
+                    (center_x + offset, center_y - offset),
+                    6
+                )
+
+            elif board[row][col] == "O":
+                pygame.draw.circle(
+                    SCREEN,
+                    O_COLOR,
+                    (center_x, center_y),
+                    CELL_SIZE // 3,
+                    6
+                )
+
+            col += 1
+        row += 1
+
+# ---------- MAIN LOOP ----------
+running = True
+while running:
+    CLOCK.tick(60)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    SCREEN.fill(BG_COLOR)
+    draw_grid()
+    draw_marks()
+    pygame.display.flip()
+
+pygame.quit()
