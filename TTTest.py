@@ -37,6 +37,8 @@ def draw_grid():
         pygame.draw.line(SCREEN, LINE_COLOR, (i*CELL_SIZE, 0), (i*CELL_SIZE, HEIGHT), 5)
         pygame.draw.line(SCREEN, LINE_COLOR, (0, i*CELL_SIZE), (WIDTH, i*CELL_SIZE), 5)
         i += 1
+# Summary: Draws the 3x3 Tic Tac Toe grid lines on the screen
+
 
 def draw_marks():
     row = 0
@@ -55,6 +57,8 @@ def draw_marks():
                 pygame.draw.circle(SCREEN, O_COLOR, (center_x, center_y), CELL_SIZE//3, 6)
             col += 1
         row += 1
+# Summary: Draws X and O symbols on the board based on board state
+
 
 def check_win():
     # Rows
@@ -77,6 +81,8 @@ def check_win():
     if board[0][2] == board[1][1] == board[2][0] != "":
         return board[0][2]
     return None
+# Summary: Checks all win conditions and returns the winner if found
+
 
 def is_draw():
     if board[0][0] != "" and board[0][1] != "" and board[0][2] != "" \
@@ -84,22 +90,27 @@ def is_draw():
        and board[2][0] != "" and board[2][1] != "" and board[2][2] != "":
         return check_win() is None
     return False
+# Summary: Determines whether the game is a draw (board full, no winner)
+
 
 # ---------- ORIGINAL AI FUNCTION FIXED ----------
 def AI():
     xord = randint(0, 2)
     yord = randint(0, 2)
-    # keep trying until empty cell
     while board[xord][yord] != "":
         xord = randint(0, 2)
         yord = randint(0, 2)
-    board[xord][yord] = "O"  # use uppercase O
+    board[xord][yord] = "O"
+# Summary: Randomly selects an empty cell and places an O for the AI
+
 
 def draw_game_over(text):
     font = pygame.font.SysFont(None, 60)
     surface = font.render(text, True, TEXT_COLOR)
     rect = surface.get_rect(center=(WIDTH//2, HEIGHT//2))
     SCREEN.blit(surface, rect)
+# Summary: Displays the game over message at the center of the screen
+
 
 # ---------- KEYBOARD TO BOARD MAPPING ----------
 key_map = {
@@ -113,7 +124,6 @@ running = True
 while running:
     CLOCK.tick(60)
 
-    # --- PROCESS EVENTS USING WHILE LOOP ---
     events = pygame.event.get()
     idx = 0
     while idx < len(events):
@@ -135,9 +145,8 @@ while running:
                         current_player = "O"
         idx += 1
 
-    # --- AI TURN USING ORIGINAL FUNCTION ---
     if current_player == "O" and not game_over:
-        pygame.time.delay(300)
+        pygame.time.delay(800)
         AI()
         winner = check_win()
         if winner:
@@ -148,7 +157,6 @@ while running:
         else:
             current_player = "X"
 
-    # --- DRAW EVERYTHING ---
     SCREEN.fill(BG_COLOR)
     draw_grid()
     draw_marks()
@@ -158,5 +166,7 @@ while running:
         else:
             draw_game_over(f"{winner} Wins!")
     pygame.display.flip()
+# Summary: Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
+
