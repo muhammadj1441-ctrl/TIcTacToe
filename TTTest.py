@@ -146,7 +146,7 @@ while running:
         idx += 1
 
     if current_player == "O" and not game_over:
-        pygame.time.delay(800)
+        pygame.time.delay(300)
         AI()
         winner = check_win()
         if winner:
@@ -169,4 +169,5 @@ while running:
 # Summary: Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
+
 
