@@ -122,7 +122,7 @@ key_map = {
     pygame.K_4: (1,0), pygame.K_5: (1,1), pygame.K_6: (1,2),
     pygame.K_7: (0,0), pygame.K_8: (0,1), pygame.K_9: (0,2)
 }
-~this makes it so we can use the numpad on the keyboard to input where you want to place an "X"
+#this makes it so we can use the numpad on the keyboard to input where you want to place an "X"
 
 #start of the main game loop
 running = True
@@ -176,6 +176,7 @@ while running:
 # Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
+
 
 
 
