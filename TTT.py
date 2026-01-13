@@ -120,9 +120,9 @@ def draw_game_over(text):
 
 
 key_map = {
-    pygame.K_1: (2,0), pygame.K_2: (2,1), pygame.K_3: (2,2),
-    pygame.K_4: (1,0), pygame.K_5: (1,1), pygame.K_6: (1,2),
-    pygame.K_7: (0,0), pygame.K_8: (0,1), pygame.K_9: (0,2)
+    pygame.K_KP1: (2,0), pygame.K_KP2: (2,1), pygame.K_KP3: (2,2),
+    pygame.K_KP4: (1,0), pygame.K_KP5: (1,1), pygame.K_KP6: (1,2),
+    pygame.K_KP7: (0,0), pygame.K_KP8: (0,1), pygame.K_KP9: (0,2)
 }
 #this makes it so we can use the numpad on the keyboard to input where you want to place an "X"
 
