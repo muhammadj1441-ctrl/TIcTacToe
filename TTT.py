@@ -134,7 +134,7 @@ while running:
     while idx < len(events):
         e = events[idx]
         if e.type == pygame.QUIT:
-            running = False~establishes the quit option 
+            running = False #establishes the quit option 
         elif e.type == pygame.KEYDOWN and not game_over:
             if current_player == "X" and e.key in key_map:
                 r, c = key_map[e.key]
@@ -176,6 +176,7 @@ while running:
 # Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
+
 
 
 
