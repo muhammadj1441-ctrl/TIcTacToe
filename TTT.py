@@ -62,7 +62,8 @@ def draw_marks():
                 pygame.draw.circle(SCREEN, O_COLOR, (center_x, center_y), CELL_SIZE//3, 6)
             col += 1
         row += 1
-# Draws X and O symbols on the board based on the 2d array previusly used as the board
+# Draws X and O symbols on the board based on the 2d array previously used as the board
+# Offset is the distance in between the cells where the lines are drawn
 
 def check_win():
     # Rows
@@ -94,7 +95,7 @@ def is_draw():
        and board[2][0] != "" and board[2][1] != "" and board[2][2] != "":
         return check_win() is None
     return False
-#Determines whether the game is a draw 
+#Determines whether the game is a draw
 
 
 
@@ -105,7 +106,8 @@ def AI():
         xord = randint(0, 2)
         yord = randint(0, 2)
     board[xord][yord] = "O"
-# Randomly selects 2 random  coordinates (using 2d array and board as a graph) and places "O" there(this is to make the ai easy mode)
+# Randomly selects 2 random  coordinates (using 2d array and board as a graph)
+# and places "O" there (this is to make the ai easy mode)
 
 
 def draw_game_over(text):
@@ -134,7 +136,7 @@ while running:
     while idx < len(events):
         e = events[idx]
         if e.type == pygame.QUIT:
-            running = False #establishes the quit option 
+            running = False #establishes the quit option
         elif e.type == pygame.KEYDOWN and not game_over:
             if current_player == "X" and e.key in key_map:
                 r, c = key_map[e.key]
@@ -176,9 +178,3 @@ while running:
 # Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
-
-
-
-
-
-
