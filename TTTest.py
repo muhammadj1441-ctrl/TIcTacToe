@@ -8,6 +8,7 @@ WIDTH, HEIGHT = 600, 600
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe")
 CLOCK = pygame.time.Clock()
+#sets up the window for the game
 
 
 board = [
@@ -15,8 +16,9 @@ board = [
     ["", "", ""],
     ["", "", ""]
 ]
-
+#sets up the board as a 2d array in the program
 CELL_SIZE = WIDTH // 3
+#esablishes the size of each square in the grid
 
 
 BG_COLOR = (255, 255, 255)
@@ -24,11 +26,14 @@ LINE_COLOR = (0, 0, 0)
 X_COLOR = (255, 0, 0)
 O_COLOR = (0, 0, 255)
 TEXT_COLOR = (0, 255, 0)
+#states the colour for the x,o,grid,background ect
+
 
 
 current_player = "X"
 game_over = False
 winner = None
+#establishes what symbol is the player and sets the variable for the game loop
 
 
 def draw_grid():
@@ -37,7 +42,7 @@ def draw_grid():
         pygame.draw.line(SCREEN, LINE_COLOR, (i*CELL_SIZE, 0), (i*CELL_SIZE, HEIGHT), 5)
         pygame.draw.line(SCREEN, LINE_COLOR, (0, i*CELL_SIZE), (WIDTH, i*CELL_SIZE), 5)
         i += 1
-#  Draws the 3x3 Tic Tac Toe grid lines on the screen
+#  Draws the 2 veritcal and horizontal lines to create the grid
 
 
 def draw_marks():
@@ -57,8 +62,7 @@ def draw_marks():
                 pygame.draw.circle(SCREEN, O_COLOR, (center_x, center_y), CELL_SIZE//3, 6)
             col += 1
         row += 1
-# Draws X and O symbols on the board based on board state
-
+# Draws X and O symbols on the board based on the 2d array previusly used as the board
 
 def check_win():
     # Rows
@@ -90,7 +94,7 @@ def is_draw():
        and board[2][0] != "" and board[2][1] != "" and board[2][2] != "":
         return check_win() is None
     return False
-#Determines whether the game is a draw (board full, no winner)
+#Determines whether the game is a draw 
 
 
 
@@ -101,7 +105,7 @@ def AI():
         xord = randint(0, 2)
         yord = randint(0, 2)
     board[xord][yord] = "O"
-# Randomly selects an empty cell and places an O for the AI
+# Randomly selects 2 random  coordinates (using 2d array and board as a graph) and places "O" there(this is to make the ai easy mode)
 
 
 def draw_game_over(text):
@@ -109,7 +113,7 @@ def draw_game_over(text):
     surface = font.render(text, True, TEXT_COLOR)
     rect = surface.get_rect(center=(WIDTH//2, HEIGHT//2))
     SCREEN.blit(surface, rect)
-# Displays the game over message at the center of the screen
+# Displays the message that the player or AI won  at the center of the screen
 
 
 
@@ -118,8 +122,9 @@ key_map = {
     pygame.K_4: (1,0), pygame.K_5: (1,1), pygame.K_6: (1,2),
     pygame.K_7: (0,0), pygame.K_8: (0,1), pygame.K_9: (0,2)
 }
+~this makes it so we can use the numpad on the keyboard to input where you want to place an "X"
 
-
+#start of the main game loop
 running = True
 while running:
     CLOCK.tick(60)
@@ -129,7 +134,7 @@ while running:
     while idx < len(events):
         e = events[idx]
         if e.type == pygame.QUIT:
-            running = False
+            running = False~establishes the quit option 
         elif e.type == pygame.KEYDOWN and not game_over:
             if current_player == "X" and e.key in key_map:
                 r, c = key_map[e.key]
@@ -160,15 +165,18 @@ while running:
     SCREEN.fill(BG_COLOR)
     draw_grid()
     draw_marks()
+    #calls sub programs used to create/display the board/window
     if game_over:
         if winner == "Draw":
             draw_game_over("Draw!")
+            #if its a draw it tells the user
         else:
             draw_game_over(f"{winner} Wins!")
-    pygame.display.flip()
+    pygame.display.flip()#displays all updates to the user
 # Main game loop handling input, turns, AI moves, drawing, and game state updates
 
 pygame.quit()
+
 
 
 
